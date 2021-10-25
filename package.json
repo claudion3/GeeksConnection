@@ -1,0 +1,11 @@
+{
+	"name": "GeeksBlog",
+	"version": "1.0.0",
+	"description": "",
+	"main": "App.js",
+	"scripts": {},
+	"keywords": [],
+	"author": "Jean Claude",
+	"license": "ISC",
+	"dependencies": {}
+}
