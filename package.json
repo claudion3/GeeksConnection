@@ -1,11 +1,21 @@
 {
-	"name": "GeeksBlog",
+	"name": "GeeksConnection",
 	"version": "1.0.0",
-	"description": "",
+	"description": "This is small website we help to connect geek people to work together on different projects",
 	"main": "App.js",
-	"scripts": {},
+	"scripts": {
+		"server": "nodemon server/App.js"
+	},
 	"keywords": [],
 	"author": "Jean Claude",
 	"license": "ISC",
-	"dependencies": {}
+	"dependencies": {
+		"apollo-server": "^3.3.0",
+		"bcryptjs": "^2.4.3",
+		"dotenv": "^10.0.0",
+		"graphql": "^15.6.0",
+		"jsonwebtoken": "^8.5.1",
+		"mongoose": "^6.0.8",
+		"nodemon": "^2.0.13"
+	}
 }
