@@ -7,7 +7,11 @@ const resolvers = require('./graphql/resolvers');
 
 const PORT = process.env.PORT || 5000;
 
-const server = new ApolloServer({ typeDefs, resolvers });
+const server = new ApolloServer({
+	typeDefs,
+	resolvers,
+	context: ({ req }) => ({ req }),
+});
 connectDB();
 
 server.listen(PORT, () => console.log(`server running on port ${PORT}`));
