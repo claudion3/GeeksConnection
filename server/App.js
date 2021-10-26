@@ -5,13 +5,13 @@ const typeDefs = require('./graphql/typeDefs');
 const connectDB = require('./config/db');
 const resolvers = require('./graphql/resolvers');
 
-const PORT = process.env.PORT || 5000;
+connectDB();
 
 const server = new ApolloServer({
 	typeDefs,
 	resolvers,
 	context: ({ req }) => ({ req }),
 });
-connectDB();
 
+const PORT = process.env.PORT || 5000;
 server.listen(PORT, () => console.log(`server running on port ${PORT}`));
