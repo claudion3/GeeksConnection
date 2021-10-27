@@ -4,7 +4,9 @@
 	"description": "This is small website we help to connect geek people to work together on different projects",
 	"main": "App.js",
 	"scripts": {
-		"server": "nodemon server/App.js"
+		"server": "nodemon server/App.js",
+		"client": "npm start --prefix client",
+		"dev": "concurrently \"npm run server\" \"npm run client\""
 	},
 	"keywords": [],
 	"author": "Jean Claude",
@@ -18,6 +20,7 @@
 		"mongoose": "^6.0.8"
 	},
 	"devDependencies": {
+		"concurrently": "^6.3.0",
 		"nodemon": "^2.0.14"
 	}
 }
