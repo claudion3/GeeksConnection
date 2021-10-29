@@ -1,0 +1,23 @@
+.ui.teal.button:focus,
+.ui.teal.buttons .button:focus {
+	background-color: #00b5ad;
+}
+
+//Home
+.page_title {
+	display: block !important;
+	text-align: center;
+	font-size: 2rem;
+	margin-top: 10px;
+}
+
+.post {
+	display: flex;
+	margin-bottom: 20px;
+	padding: 20px;
+}
+//REgister
+.form_container {
+	width: 400px;
+	margin: auto;
+}
