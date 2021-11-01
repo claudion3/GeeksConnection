@@ -13,18 +13,18 @@ import AuthRoute from './util/AuthRoute';
 
 import './App.module.scss';
 import SinglePost from './pages/SinglePost';
+import Footer from './components/Footer';
 
 const App = () => {
 	return (
 		<AuthProvider>
 			<Router>
-				<Container>
-					<Menubar />
-					<Route exact path='/' component={Home} />
-					<AuthRoute exact path='/login' component={Login} />
-					<AuthRoute exact path='/register' component={Register} />
-					<Route exact path='/posts/:postId' component={SinglePost} />
-				</Container>
+				<Menubar />
+				<Route exact path='/' component={Home} />
+				<AuthRoute exact path='/login' component={Login} />
+				<AuthRoute exact path='/register' component={Register} />
+				<Route exact path='/posts/:postId' component={SinglePost} />
+				<Footer />
 			</Router>
 		</AuthProvider>
 	);

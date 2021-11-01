@@ -2,7 +2,7 @@ import React from 'react';
 import { useMutation } from '@apollo/react-hooks';
 import gql from 'graphql-tag';
 
-import { Button, Form } from 'semantic-ui-react';
+import { Button, Form, TextArea } from 'semantic-ui-react';
 import { useForm } from '../util/hooks';
 import { FETCH_POSTS_QUERY } from '../util/graphql';
 
@@ -32,12 +32,14 @@ function PostForm({ history }) {
 		<>
 			<Form onSubmit={submitHandler}>
 				<Form.Field>
-					<Form.Input
-						placeholder='Hi World!'
+					<TextArea
+						placeholder='Tell us more!'
 						name='body'
 						onChange={changeHandler}
 						value={values.body}
 						error={error ? true : false}
+						rows={2}
+						style={{ marginBottom: 20 }}
 					/>
 					<Button type='submit' color='teal'>
 						Post

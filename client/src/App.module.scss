@@ -4,20 +4,63 @@
 }
 
 //Home
+.wrapper {
+	display: flex;
+	flex-direction: column;
+}
 .page_title {
 	display: block !important;
 	text-align: center;
 	font-size: 2rem;
 	margin-top: 10px;
 }
-
-.post {
+.post_form {
 	display: flex;
-	margin-bottom: 20px;
-	padding: 20px;
+	margin: 10px 20px;
+}
+
+.post_card {
+	display: flex;
+	flex-wrap: wrap;
+}
+.cards {
+	width: 30%;
+	margin: 10px;
+}
+@media screen and (max-width: 600px) {
+	.cards {
+		width: 100%;
+	}
 }
 //REgister
 .form_container {
 	width: 400px;
 	margin: auto;
+}
+//login
+.form_container {
+	margin-bottom: 150px;
+}
+
+@media screen and (max-width: 600px) {
+	.form_container {
+		width: 100%;
+		margin: 30px;
+	}
+	.form_container > Form {
+		width: 50%;
+	}
+}
+//single post
+.comment_wrapper {
+	display: flex;
+	margin: 20px;
+}
+.comment_img_container {
+	display: flex;
+}
+.comment_img {
+	width: 10%;
+	margin: 20px;
+	border-radius: 100%;
 }
