@@ -9,13 +9,11 @@ module.exports = {
 	},
 	Query: {
 		...postsResolvers.Query,
+		...usersResolvers.Query,
 	},
 	Mutation: {
 		...usersResolvers.Mutation,
 		...postsResolvers.Mutation,
 		...commentsResolvers.Mutation,
 	},
-	// Subscription: {
-	// 	...postsResolvers.Subscription,
-	// },
 };

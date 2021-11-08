@@ -7,15 +7,16 @@ import {
 	Card,
 	Form,
 	Grid,
-	Image,
 	Icon,
 	Label,
+	Container,
 } from 'semantic-ui-react';
 
 import { AuthContext } from '../context/auth';
 import LikeButton from '../components/LikeButton';
 import DeleteButton from '../components/DeleteButton';
 import MyPopup from '../util/MyPopup';
+import style from '../App.module.scss';
 
 function SinglePost(props) {
 	const postId = props.match.params.postId;
@@ -45,8 +46,11 @@ function SinglePost(props) {
 			body: comment,
 		},
 	});
+	//console.log('user', user);
 
 	function deletePostCallback() {
+		//window.location.reload();
+
 		props.history.push('/');
 	}
 
@@ -66,16 +70,9 @@ function SinglePost(props) {
 		} = getPost;
 
 		postMarkup = (
-			<Grid>
+			<Container className={style.comment_wrapper}>
 				<Grid.Row>
-					<Grid.Column width={2}>
-						<Image
-							src='https://react.semantic-ui.com/images/avatar/large/steve.jpg'
-							size='small'
-							float='right'
-						/>
-					</Grid.Column>
-					<Grid.Column width={10}>
+					<Grid.Column>
 						<Card fluid>
 							<Card.Content>
 								<Card.Header>{username}</Card.Header>
@@ -143,7 +140,7 @@ function SinglePost(props) {
 						))}
 					</Grid.Column>
 				</Grid.Row>
-			</Grid>
+			</Container>
 		);
 	}
 	return postMarkup;

@@ -2,7 +2,7 @@ require('dotenv').config();
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const { UserInputError } = require('apollo-server');
-
+const checkAuth = require('../../utils/checkAuth');
 const User = require('../../models/User');
 const {
 	validateRegisterInput,
@@ -22,7 +22,35 @@ const generateToken = user => {
 };
 
 module.exports = {
+	Query: {
+		//Get All users
+		async getUsers() {
+			try {
+				const users = await User.find().sort({ createdAt: -1 });
+				return users;
+			} catch (err) {
+				throw new Error(err);
+			}
+		},
+	},
 	Mutation: {
+		async updateUser(_, args, context) {
+			const user = checkAuth(context);
+			//const user = await User.findById(userId);
+
+			const userUpdated = await User.findByIdAndUpdate(
+				args.userId,
+				{
+					username: args.username,
+					password: args.password,
+					confirmPassword: args.confirmPassword,
+					email: args.email,
+				},
+				{ new: true },
+			);
+
+			return userUpdated;
+		},
 		async login(_, { username, password }) {
 			const { errors, valid } = validateLoginInput(username, password);
 

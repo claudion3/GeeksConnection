@@ -2,17 +2,18 @@ import React from 'react';
 import { useMutation } from '@apollo/react-hooks';
 import gql from 'graphql-tag';
 
-import { Button, Form } from 'semantic-ui-react';
+import { Button, Form, TextArea } from 'semantic-ui-react';
 import { useForm } from '../util/hooks';
 import { FETCH_POSTS_QUERY } from '../util/graphql';
 
-function PostForm({ history }) {
+function PostForm() {
 	const { values, submitHandler, changeHandler } = useForm(createPostCallback, {
 		body: '',
 	});
 
 	const [createPost, { error }] = useMutation(CREATE_POST_MUTATION, {
 		variables: values,
+
 		update(proxy, result) {
 			const data = proxy.readQuery({
 				query: FETCH_POSTS_QUERY,
@@ -20,7 +21,7 @@ function PostForm({ history }) {
 			data.getPosts = [result.data.createPost, ...data.getPosts];
 			proxy.writeQuery({ query: FETCH_POSTS_QUERY, data });
 			values.body = '';
-			history.push('/');
+			window.location.reload();
 		},
 	});
 
@@ -32,12 +33,14 @@ function PostForm({ history }) {
 		<>
 			<Form onSubmit={submitHandler}>
 				<Form.Field>
-					<Form.Input
-						placeholder='Hi World!'
+					<TextArea
+						placeholder='Tell us more!'
 						name='body'
 						onChange={changeHandler}
 						value={values.body}
 						error={error ? true : false}
+						rows={2}
+						style={{ marginBottom: 20 }}
 					/>
 					<Button type='submit' color='teal'>
 						Post
