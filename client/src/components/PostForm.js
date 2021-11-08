@@ -6,13 +6,14 @@ import { Button, Form, TextArea } from 'semantic-ui-react';
 import { useForm } from '../util/hooks';
 import { FETCH_POSTS_QUERY } from '../util/graphql';
 
-function PostForm({ history }) {
+function PostForm() {
 	const { values, submitHandler, changeHandler } = useForm(createPostCallback, {
 		body: '',
 	});
 
 	const [createPost, { error }] = useMutation(CREATE_POST_MUTATION, {
 		variables: values,
+
 		update(proxy, result) {
 			const data = proxy.readQuery({
 				query: FETCH_POSTS_QUERY,
@@ -20,7 +21,7 @@ function PostForm({ history }) {
 			data.getPosts = [result.data.createPost, ...data.getPosts];
 			proxy.writeQuery({ query: FETCH_POSTS_QUERY, data });
 			values.body = '';
-			history.push('/');
+			window.location.reload();
 		},
 	});
 

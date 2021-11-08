@@ -7,6 +7,8 @@
 .wrapper {
 	display: flex;
 	flex-direction: column;
+     
+     
 }
 .page_title {
 	display: block !important;
@@ -54,6 +56,7 @@
 //single post
 .comment_wrapper {
 	display: flex;
+	width: 50%;
 	margin: 20px;
 }
 .comment_img_container {
@@ -64,3 +67,23 @@
 	margin: 20px;
 	border-radius: 100%;
 }
+// profile
+
+.profile{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+.image{
+    display: flex;
+   margin-bottom: 10px;
+}
+.image > img{
+    border-radius: 50%;
+}
+.username{
+     display: flex;
+     flex-direction: column;
+     }
+

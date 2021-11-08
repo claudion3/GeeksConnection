@@ -7,7 +7,6 @@ import {
 	Card,
 	Form,
 	Grid,
-	Image,
 	Icon,
 	Label,
 	Container,
@@ -47,8 +46,11 @@ function SinglePost(props) {
 			body: comment,
 		},
 	});
+	//console.log('user', user);
 
 	function deletePostCallback() {
+		//window.location.reload();
+
 		props.history.push('/');
 	}
 

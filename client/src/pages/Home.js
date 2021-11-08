@@ -1,7 +1,13 @@
 import React, { useContext } from 'react';
 import { useQuery } from '@apollo/react-hooks';
 
-import { Grid, GridRow, Transition, Container } from 'semantic-ui-react';
+import {
+	Grid,
+	GridRow,
+	Transition,
+	Container,
+	Loader,
+} from 'semantic-ui-react';
 import PostCard from '../components/PostCard';
 import style from '../App.module.scss';
 import { AuthContext } from '../context/auth';
@@ -27,7 +33,7 @@ const Home = () => {
 				</GridRow>
 				<GridRow className={style.post_card}>
 					{loading ? (
-						<h1>Loading posts...</h1>
+						<Loader content='Loading' />
 					) : (
 						<Transition.Group>
 							{data &&
