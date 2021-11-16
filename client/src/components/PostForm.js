@@ -6,7 +6,7 @@ import { Button, Form, TextArea } from 'semantic-ui-react';
 import { useForm } from '../util/hooks';
 import { FETCH_POSTS_QUERY } from '../util/graphql';
 
-function PostForm() {
+function PostForm({ history }) {
 	const { values, submitHandler, changeHandler } = useForm(createPostCallback, {
 		body: '',
 	});
@@ -18,10 +18,12 @@ function PostForm() {
 			const data = proxy.readQuery({
 				query: FETCH_POSTS_QUERY,
 			});
-			data.getPosts = [result.data.createPost, ...data.getPosts];
-			proxy.writeQuery({ query: FETCH_POSTS_QUERY, data });
+
+			proxy.writeQuery({
+				query: FETCH_POSTS_QUERY,
+				data: { getPosts: [result.data.createPost, ...data.getPosts] },
+			});
 			values.body = '';
-			window.location.reload();
 		},
 	});
 
