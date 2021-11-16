@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { useQuery } from '@apollo/react-hooks';
 
 import {
@@ -17,6 +17,13 @@ import { FETCH_POSTS_QUERY } from '../util/graphql';
 const Home = () => {
 	const user = useContext(AuthContext);
 	const { loading, data } = useQuery(FETCH_POSTS_QUERY);
+	const [allPosts, setAllPosts] = useState([]);
+
+	useEffect(() => {
+		if (data) {
+			setAllPosts(data.getPosts);
+		}
+	}, [data]);
 
 	return (
 		<Container>
@@ -37,7 +44,7 @@ const Home = () => {
 					) : (
 						<Transition.Group>
 							{data &&
-								data.getPosts.map(post => (
+								allPosts.map(post => (
 									<Grid.Column key={post.id} className={style.cards}>
 										<PostCard post={post} />
 									</Grid.Column>
