@@ -12,6 +12,7 @@ function PostCard({
 	post: { body, createdAt, id, username, likeCount, commentCount, likes },
 }) {
 	const { user } = useContext(AuthContext);
+	const disabled = user ? false : true;
 
 	return (
 		<Card fluid>
@@ -28,9 +29,17 @@ function PostCard({
 				<Card.Description>{body}</Card.Description>
 			</Card.Content>
 			<Card.Content extra>
-				<LikeButton user={user} post={{ id, likes, likeCount }} />
+				<LikeButton
+					user={user}
+					post={{ id, likes, likeCount }}
+					disabled={disabled}
+				/>
 				<MyPopup content='Comment on post'>
-					<Button labelPosition='right' as={Link} to={`/posts/${id}`}>
+					<Button
+						labelPosition='right'
+						as={Link}
+						to={`/posts/${id}`}
+						disabled={disabled}>
 						<Button color='blue' basic>
 							<Icon name='comments' />
 						</Button>

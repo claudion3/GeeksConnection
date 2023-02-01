@@ -1,12 +1,14 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { useMutation } from '@apollo/react-hooks';
 import gql from 'graphql-tag';
+import { AuthContext } from '../context/auth';
 
 import { Button, Form, TextArea } from 'semantic-ui-react';
 import { useForm } from '../util/hooks';
 import { FETCH_POSTS_QUERY } from '../util/graphql';
 
 function PostForm({ history }) {
+	const { user } = useContext(AuthContext);
 	const { values, submitHandler, changeHandler } = useForm(createPostCallback, {
 		body: '',
 	});
@@ -34,20 +36,25 @@ function PostForm({ history }) {
 	return (
 		<>
 			<Form onSubmit={submitHandler}>
-				<Form.Field>
-					<TextArea
-						placeholder='Tell us more!'
-						name='body'
-						onChange={changeHandler}
-						value={values.body}
-						error={error ? true : false}
-						rows={2}
-						style={{ marginBottom: 20 }}
-					/>
-					<Button type='submit' color='teal'>
-						Post
-					</Button>
-				</Form.Field>
+				{user && (
+					<Form.Field>
+						<TextArea
+							placeholder='Tell us more!'
+							name='body'
+							onChange={changeHandler}
+							value={values.body}
+							error={error === 'undefined' ? false : true}
+							rows={2}
+							style={{ marginBottom: 20 }}
+						/>
+						<Button
+							type='submit'
+							color='teal'
+							disabled={values.body ? false : true}>
+							Post
+						</Button>
+					</Form.Field>
+				)}
 			</Form>
 			{error && (
 				<div className='ui error message' style={{ marginBottom: 20 }}>

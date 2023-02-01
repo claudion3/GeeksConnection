@@ -10,7 +10,7 @@ import style from '../App.module.scss';
 
 const Register = ({ history }) => {
 	const context = useContext(AuthContext);
-	const [errors, setErrors] = useState({});
+	const [errors, setErrors] = useState({} || false);
 
 	const { values, submitHandler, changeHandler } = useForm(registerUser, {
 		username: '',
@@ -32,7 +32,7 @@ const Register = ({ history }) => {
 	function registerUser() {
 		addUser();
 	}
-
+	console.log('error', errors.username);
 	return (
 		<div className={style.form_container}>
 			<Form

@@ -9,7 +9,7 @@ import style from '../App.module.scss';
 
 const Login = ({ history }) => {
 	const context = useContext(AuthContext);
-	const [errors, setErrors] = useState({});
+	const [errors, setErrors] = useState({} || false);
 
 	const { values, submitHandler, changeHandler } = useForm(loginUserCallback, {
 		username: '',
